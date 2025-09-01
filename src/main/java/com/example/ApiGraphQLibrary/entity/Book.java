@@ -3,6 +3,8 @@ package com.example.ApiGraphQLibrary.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,32 +15,34 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @NonNull
-    String title;
+    private String title;
 
     @NonNull
-    int yearPublic;
+    private int yearPublic;
 
     @NonNull
-    String editorial;
+    private String editorial;
 
     @NonNull
-    String code;
+    private String code;
 
-    @Column(name = "id_user")
+    @Column(name = "state")
     @NonNull
-    byte estado;
+    private boolean estado;
 
     @NonNull
-    int numPage;
+    private int numePage;
 
-    @Column(name = "id_autor")
-    @NonNull
-    int idAutor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_autor", nullable = false)
+    private Author author;
 
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Loan>  loans;
 
-
-
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reserv>  reservs;
 }

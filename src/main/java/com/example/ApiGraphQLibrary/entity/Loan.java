@@ -12,28 +12,25 @@ import lombok.*;
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-
-    @Column(name = "id_book")
-    @NonNull
-    int idBook;
-
-    @Column(name = "id_user")
-    @NonNull
-    int idUser;
+    private int id;
 
     @Column(name = "date_loan")
     @NonNull
-    String datePrestamo;
+    private String datePrestamo;
 
     @Column(name = "date_devol_loan")
     @NonNull
-    String dateDevol;
+    private String dateDevol;
 
     @Column(name = "date_real_de_loan")
-    @NonNull
-    String dateDevolucionReal;
+    private String dateDevolucionReal;
 
+    @JoinColumn(name = "id_book")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Book book;
 
+    @JoinColumn(name = "id_user")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
 }
