@@ -1,10 +1,10 @@
 package com.example.ApiGraphQLibrary.entity;
 
+import com.example.ApiGraphQLibrary.info.Mss;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.util.List;
 
@@ -18,7 +18,14 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = Mss.notN_E)
+    @Size(min = 1, max = 100)
     private String name;
+
+    @NotBlank(message = Mss.notN_E)
+    @Size(min =1, max = 100)
+    @Column(name = "last_Name")
     private String lastName;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)

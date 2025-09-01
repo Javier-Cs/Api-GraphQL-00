@@ -1,6 +1,10 @@
 package com.example.ApiGraphQLibrary.entity;
 
+import com.example.ApiGraphQLibrary.info.Mss;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
@@ -11,29 +15,30 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "books_tbl", schema = "library")
-public class Book {
+public  class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NonNull
+    @NotBlank(message = Mss.notN_E)
+    @Size(max = 60)
     private String title;
 
-    @NonNull
+    @Size(max = 6)
     private int yearPublic;
 
-    @NonNull
+    @NotBlank(message = Mss.notN_E)
+    @Size(max = 50)
     private String editorial;
 
-    @NonNull
+    @NotBlank(message = Mss.notN_E)
+    @Size(max = 100)
     private String code;
 
     @Column(name = "state")
-    @NonNull
     private boolean estado;
 
-    @NonNull
     private int numePage;
 
     @ManyToOne(fetch = FetchType.LAZY)

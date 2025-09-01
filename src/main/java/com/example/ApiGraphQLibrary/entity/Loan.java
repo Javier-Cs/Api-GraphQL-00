@@ -1,7 +1,11 @@
 package com.example.ApiGraphQLibrary.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
@@ -15,15 +19,13 @@ public class Loan {
     private int id;
 
     @Column(name = "date_loan")
-    @NonNull
-    private String datePrestamo;
+    private LocalDate datePrestamo;
 
     @Column(name = "date_devol_loan")
-    @NonNull
-    private String dateDevol;
+    private LocalDate dateDevol;
 
     @Column(name = "date_real_de_loan")
-    private String dateDevolucionReal;
+    private LocalDate dateDevolucionReal;
 
     @JoinColumn(name = "id_book")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,5 +34,4 @@ public class Loan {
     @JoinColumn(name = "id_user")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
 }

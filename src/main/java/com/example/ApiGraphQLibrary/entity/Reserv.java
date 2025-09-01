@@ -1,7 +1,12 @@
 package com.example.ApiGraphQLibrary.entity;
 
+import com.example.ApiGraphQLibrary.info.Mss;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
@@ -14,11 +19,12 @@ public class Reserv {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NonNull
+    @NotBlank(message = Mss.notN_E)
     private String status;
 
-    @NonNull
-    private String date_res;
+    @NotEmpty
+    @Column(name = "date_res")
+    private LocalDate dateReserv;
 
     @JoinColumn(name = "id_book")
     @ManyToOne(fetch = FetchType.LAZY)
