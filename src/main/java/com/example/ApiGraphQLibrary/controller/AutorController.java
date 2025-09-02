@@ -27,11 +27,11 @@ public class AutorController {
 
 
     @MutationMapping
-    public Author saveAuthor(@Argument AuthorGet authorDto) {
-        Author authorDb = new  Author();
-        authorDb.setName(authorDto.name());
-        authorDb.setLastName(authorDto.lastName());
-        return authorService.save(authorDb);
+    public Author createAuthor(@Argument AuthorGet authorGet) {
+        Author authorNew = new  Author();
+        authorNew.setName(authorGet.name());
+        authorNew.setLastName(authorGet.lastName());
+        return authorService.save(authorNew);
     }
 
 }

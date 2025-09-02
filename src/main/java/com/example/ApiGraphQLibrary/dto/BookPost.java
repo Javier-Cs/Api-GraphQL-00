@@ -1,7 +1,7 @@
 package com.example.ApiGraphQLibrary.dto;
 
 public record BookPost(
-        //int id,
+
         String title,
         int yearPublic,
         String editorial,

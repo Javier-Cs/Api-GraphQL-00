@@ -1,5 +1,12 @@
 type Query{
     obtenerTodosLosLibros:[Book]
+    ListaAuthor:[Author]
+
+}
+type Author{
+    id: Int,
+    name: String,
+    lastName: String
 }
 
 type  Book{
@@ -15,8 +22,21 @@ type  Book{
 
 
 type Mutation{
-    createBook(bookPost: BookPost): Book
+    createBook(bookPost: BookPost): Book,
+    createAuthor(authorGet:AuthorGet):Author
 }
+input AuthorPut{
+    id: Int,
+    name: String,
+    lastName: String
+}
+
+input AuthorGet{
+    name: String,
+    lastName: String
+}
+
+
 
 
 input  BookUp{
@@ -30,12 +50,11 @@ input  BookUp{
 }
 
 input  BookPost{
-    #id: Int,
     title: String,
     yearPublic: Int,
     editorial:String
     code: String,
-    estado:Boolean
+    estado:Boolean,
     numePage: Int,
     id_autor:Int
 }
