@@ -3,9 +3,10 @@ package com.example.ApiGraphQLibrary.service;
 import com.example.ApiGraphQLibrary.entity.Book;
 import com.example.ApiGraphQLibrary.repository.BookRepo;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class BookService implements CrudService<Book, Integer>{
 
     private final BookRepo bookRepo;
@@ -45,7 +46,7 @@ public class BookService implements CrudService<Book, Integer>{
          bookUp.setEditorial(book.getEditorial());
          bookUp.setYearPublic(book.getYearPublic());
          bookUp.setCode(book.getCode());
-         bookUp.setEstado(book.isEstado());
+         bookUp.setEstado(book.getEstado());
          bookUp.setNumePage(book.getNumePage());
 
         return bookRepo.save(bookUp);

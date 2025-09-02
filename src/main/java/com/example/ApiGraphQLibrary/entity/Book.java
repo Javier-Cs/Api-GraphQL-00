@@ -19,27 +19,28 @@ public  class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @NotBlank(message = Mss.notN_E)
+    @NotBlank(message = "El título no puede estar en blanco o nulo")
     @Size(max = 60)
     private String title;
 
-    @Size(max = 6)
-    private int yearPublic;
+    @Column(name = "year_public")
+    private Integer yearPublic;
 
-    @NotBlank(message = Mss.notN_E)
+    @NotBlank(message = "La editorial no puede estar en blanco o nula")
     @Size(max = 50)
     private String editorial;
 
-    @NotBlank(message = Mss.notN_E)
+    @NotBlank(message = "El código no puede estar en blanco o nulo")
     @Size(max = 100)
     private String code;
 
     @Column(name = "state")
-    private boolean estado;
+    private Boolean estado;
 
-    private int numePage;
+    @Column(name = "nume_page")
+    private Integer numePage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_autor", nullable = false)

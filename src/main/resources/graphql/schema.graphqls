@@ -1,0 +1,45 @@
+type Query{
+    obtenerTodosLosLibros:[Book]
+}
+
+type  Book{
+    id: Int,
+    title: String,
+    yearPublic: Int,
+    editorial:String
+    code: String,
+    estado:Boolean
+    numePage: Int,
+    id_autor:Int
+}
+
+
+type Mutation{
+    createBook(bookPost: BookPost): Book
+}
+
+
+input  BookUp{
+    id: Int,
+    yearPublic: String,
+    editorial:String
+    code: String,
+    estado:Boolean
+    numePage: Int,
+    id_autor:Int
+}
+
+input  BookPost{
+    #id: Int,
+    title: String,
+    yearPublic: Int,
+    editorial:String
+    code: String,
+    estado:Boolean
+    numePage: Int,
+    id_autor:Int
+}
+
+
+
+
