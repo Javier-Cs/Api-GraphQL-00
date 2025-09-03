@@ -1,6 +1,7 @@
 package com.example.ApiGraphQLibrary.controller;
 
 import com.example.ApiGraphQLibrary.dto.BookPost;
+import com.example.ApiGraphQLibrary.dto.BookPut;
 import com.example.ApiGraphQLibrary.entity.Author;
 import com.example.ApiGraphQLibrary.entity.Book;
 import com.example.ApiGraphQLibrary.service.AuthorService;
@@ -24,10 +25,18 @@ public class BookController {
         this.authorService = authorService;
     }
 
+
+
     @QueryMapping
-    public List<Book> obtenerTodosLosLibros() {
+    public List<Book> listaLibros() {
         return bookService.findAll();
     }
+
+    @QueryMapping
+    public Book listarLibroById(@Argument int id) {
+        return bookService.findById(id);
+    }
+
 
     @MutationMapping
     public Book createBook(@Argument BookPost bookPost) {
@@ -41,5 +50,24 @@ public class BookController {
         bookNew.setNumePage(bookPost.numePage());
         bookNew.setAuthor(author);
         return bookService.save(bookNew);
+    }
+
+    @MutationMapping
+    public void deleteBook (@Argument int id) {
+        bookService.deleteById(id);
+    }
+
+    @MutationMapping
+    public Book updateBook(@Argument int id, @Argument BookPut bookPut) {
+
+        Book bookUp = new  Book();
+        bookUp.setTitle(bookPut.title());
+        bookUp.setYearPublic(bookPut.yearPublic());
+        bookUp.setEditorial(bookPut.editorial());
+        bookUp.setCode(bookPut.code());
+        bookUp.setEstado(bookPut.estado());
+        bookUp.setNumePage(bookPut.numePage());
+
+        return bookService.updateById(id, bookUp);
     }
 }

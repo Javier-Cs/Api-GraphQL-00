@@ -1,6 +1,10 @@
 type Query{
-    obtenerTodosLosLibros:[Book]
-    ListaAuthor:[Author]
+    #Book
+    listaLibros:[Book]
+    listarLibroById(id: Int):Book
+    #Author
+    listarAutores:[Author]
+    listarAutorById(id:Int):Author
 
 }
 type Author{
@@ -17,16 +21,26 @@ type  Book{
     code: String,
     estado:Boolean
     numePage: Int,
-    id_autor:Int
+    author:Author
 }
 
 
 type Mutation{
+    #Book
     createBook(bookPost: BookPost): Book,
-    createAuthor(authorGet:AuthorGet):Author
+    updateBook(id:Int, bookPut: BookPut):Book
+    deleteBook(id:Int):Int,
+
+    #Author
+    createAuthor(authorGet:AuthorGet):Author,
+    updateAuthor(id:Int, authorPut: AuthorPut):Author,
+    deleteAutor(id:Int):Int
 }
+
+
+
+#Author
 input AuthorPut{
-    id: Int,
     name: String,
     lastName: String
 }
@@ -37,16 +51,16 @@ input AuthorGet{
 }
 
 
-
-
-input  BookUp{
-    id: Int,
-    yearPublic: String,
+#Book
+input  BookPut{
+    #id: Int,
+    title: String,
+    yearPublic: Int,
     editorial:String
     code: String,
     estado:Boolean
     numePage: Int,
-    id_autor:Int
+    #id_autor:Int
 }
 
 input  BookPost{

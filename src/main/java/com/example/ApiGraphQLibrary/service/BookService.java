@@ -42,7 +42,6 @@ public class BookService implements CrudService<Book, Integer>{
                  .orElseThrow(() -> new ResourceNotFoundException("Book with id " + id + " not found"));
 
          bookUp.setTitle(book.getTitle());
-         bookUp.setAuthor(book.getAuthor());
          bookUp.setEditorial(book.getEditorial());
          bookUp.setYearPublic(book.getYearPublic());
          bookUp.setCode(book.getCode());

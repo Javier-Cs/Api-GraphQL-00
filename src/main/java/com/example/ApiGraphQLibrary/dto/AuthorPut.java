@@ -1,8 +1,8 @@
 package com.example.ApiGraphQLibrary.dto;
 
-public record AuthorGet(
+public record AuthorPut(
+        Integer id,
         String name,
         String lastName
-
 ) {
 }

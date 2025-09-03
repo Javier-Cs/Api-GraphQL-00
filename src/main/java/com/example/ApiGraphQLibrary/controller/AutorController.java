@@ -1,9 +1,9 @@
 package com.example.ApiGraphQLibrary.controller;
 
-import com.example.ApiGraphQLibrary.dto.AuthorGet;
+import com.example.ApiGraphQLibrary.dto.AuthorPost;
+import com.example.ApiGraphQLibrary.dto.AuthorPut;
 import com.example.ApiGraphQLibrary.entity.Author;
 import com.example.ApiGraphQLibrary.service.AuthorService;
-import jakarta.persistence.Column;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -21,17 +21,35 @@ public class AutorController {
 
 
     @QueryMapping
-    public List<Author> ListaAuthor() {
+    public List<Author> listarAutores() {
         return authorService.findAll();
     }
 
+    @QueryMapping
+    public Author listarAutorById(@Argument int id) {
+        return authorService.findById(id);
+    }
 
     @MutationMapping
-    public Author createAuthor(@Argument AuthorGet authorGet) {
+    public Author createAuthor(@Argument AuthorPost authorGet) {
         Author authorNew = new  Author();
         authorNew.setName(authorGet.name());
         authorNew.setLastName(authorGet.lastName());
         return authorService.save(authorNew);
+    }
+
+    @MutationMapping
+    public void deleteAutor(@Argument int id){
+        authorService.deleteById(id);
+    }
+
+    @MutationMapping
+    public Author updateAuthor(@Argument int id, @Argument AuthorPut authorPut) {
+        Author authorUp = new  Author();
+        authorUp.setName(authorPut.name());
+        authorUp.setLastName(authorPut.lastName());
+        return authorService.updateById(id, authorUp);
+
     }
 
 }
