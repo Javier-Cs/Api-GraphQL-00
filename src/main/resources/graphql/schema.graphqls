@@ -2,17 +2,74 @@ type Query{
     #Book
     listaLibros:[Book]
     listarLibroById(id: Int):Book
+
     #Author
     listarAutores:[Author]
     listarAutorById(id:Int):Author
 
+    #Loan
+    ListarLoan: [Loan]
+    listarLoanById(id:Int):Loan
+
+    #Reserv
+    listarReserv: [Reserv]
+    listarReservById(id: Int): Reserv
+
+    #User
+    listarUser: [User]
+    listarUserById(id: Int):User
+
 }
+
+
+type Mutation{
+    #Book
+    createBook(bookPost: BookPost): Book,
+    updateBook(id:Int, bookPut: BookPut):Book
+    deleteBook(id:Int):Int,
+
+    #Author
+    createAuthor(authorGet:AuthorPost):Author,
+    updateAuthor(id:Int, authorPut: AuthorPut):Author,
+    deleteAutor(id:Int):Int,
+
+    #Loan
+    createLoan(loanPost: LoanPost): Loan,
+    updateLoan(id: Int , loanPut: LoanPut): Loan,
+    deleteLoan(id: Int): Int,
+
+    #Reserv
+    createReserv(reservPost: ReservPost): Reserv,
+    updateReserv(reservPut: ReservPut):Reserv,
+    deleteReserv(id: Int): Int,
+
+    #User
+    createUser(userPost: UserPost): User,
+    updateUser(userPut: UserPut): User,
+    deleteUser(id: Int):Int
+}
+
+
+
+#Author --------------------------
 type Author{
     id: Int,
     name: String,
     lastName: String
 }
 
+input AuthorPut{
+    name: String,
+    lastName: String
+}
+
+input AuthorPost{
+    name: String,
+    lastName: String
+}
+
+
+#Book --------------------------
 type  Book{
     id: Int,
     title: String,
@@ -24,43 +81,13 @@ type  Book{
     author:Author
 }
 
-
-type Mutation{
-    #Book
-    createBook(bookPost: BookPost): Book,
-    updateBook(id:Int, bookPut: BookPut):Book
-    deleteBook(id:Int):Int,
-
-    #Author
-    createAuthor(authorGet:AuthorGet):Author,
-    updateAuthor(id:Int, authorPut: AuthorPut):Author,
-    deleteAutor(id:Int):Int
-}
-
-
-
-#Author
-input AuthorPut{
-    name: String,
-    lastName: String
-}
-
-input AuthorGet{
-    name: String,
-    lastName: String
-}
-
-
-#Book
 input  BookPut{
-    #id: Int,
     title: String,
     yearPublic: Int,
     editorial:String
     code: String,
     estado:Boolean
-    numePage: Int,
-    #id_autor:Int
+    numePage: Int
 }
 
 input  BookPost{
@@ -74,5 +101,72 @@ input  BookPost{
 }
 
 
+
+#Loan --------------------------
+type Loan{
+    datePrestamo: String,
+    dateDevol: String,
+    dateDevolucionReal: String,
+    book: Book,
+    user: User
+}
+
+input LoanPost{
+    datePrestamo: String,
+    dateDevol: String,
+    dateDevolucionReal: String,
+    id_book: Int,
+    id_user: Int
+}
+
+input LoanPut{
+    dateDevol: String,
+    dateDevolucionReal: String,
+    id_book: Int
+}
+
+
+#Reserv --------------------------
+type Reserv{
+    status: String,
+    dateReserv: String,
+    book: Book,
+    user: User
+}
+
+input ReservPost{
+    status: String,
+    dateReserv: String,
+    id_book: Int,
+    id_user: Int
+}
+
+input ReservPut{
+    status: String,
+    id_book: Int
+}
+
+
+
+
+#User --------------------------
+type User{
+    name: String,
+    lastName: String,
+    email: String,
+    dateRegistrer: String
+}
+
+input UserPost{
+    name: String,
+    lastName: String,
+    email: String,
+}
+
+input UserPut{
+    name: String,
+    lastName: String,
+    email: String,
+}
 
 
