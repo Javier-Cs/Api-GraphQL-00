@@ -1,0 +1,108 @@
+--- Book ---
+
+-- Leer Lista de
+{
+  listaLibros {
+    id
+    title
+    yearPublic
+    numePage
+    code
+    author {
+      id
+      name
+    }
+  }
+}
+
+-- obtener por Id
+{
+  listarLibroById(id: 6) {
+    id
+    title
+    yearPublic
+    editorial
+    author {
+      name
+    }
+  }
+}
+
+-- crear
+mutation {
+  createBook(
+    bookPost: {title: "PAZ", yearPublic: 2005, editorial: "Casa Blanca", code: "LB3JT5",estado: true, numePage: 222, id_autor: 2}
+  ) {
+    title
+    yearPublic
+    editorial
+    code
+    estado
+    numePage,
+    author{
+      id
+    }
+  }
+}
+
+-- actualizar
+mutation {
+  updateBook(
+    id: 5
+    bookPut: {title: "La Benia", yearPublic: 2001, editorial: "El Arte", code: "LB5G88", estado: false, numePage: 200}
+  ) {
+    title
+    yearPublic
+    editorial
+    code
+    estado
+    numePage
+  }
+}
+
+-- eliminar
+mutation{
+  deleteBook(id:10)
+}
+
+
+--- Author ---
+-- Leer Lista de Authors
+{
+  listarAutores {
+    id
+    name
+    lastName
+  }
+}
+
+-- obtener por Id
+query{
+  listarAutorById(id : 1){
+    name,
+    lastName
+  }
+}
+
+-- crear
+mutation {
+  createAuthor(authorGet: {name: "Lucia", lastName: "Ulloa"}) {
+    name
+    lastName
+  }
+}
+
+-- actualizar
+mutation {
+  updateAuthor(
+    id: 3,
+    authorPut: {name: "Paula", lastName: "Carchi"}) {
+    name
+    lastName
+  }
+}
+
+-- eliminar
+mutation {
+  deleteAutor(id: 2)
+}
