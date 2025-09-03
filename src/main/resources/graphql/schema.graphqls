@@ -1,149 +1,149 @@
 type Query{
     #Book
-    listaLibros:[Book]
-    listarLibroById(id: Int):Book
+    listaLibros:[Book!]!
+    listarLibroById(id: ID!):Book
 
     #Author
-    listarAutores:[Author]
-    listarAutorById(id:Int):Author
+    listarAutores:[Author!]!
+    listarAutorById(id:ID!):Author
 
     #Loan
-    ListarLoan: [Loan]
-    listarLoanById(id:Int):Loan
+    ListarLoan: [Loan!]!
+    listarLoanById(id:ID!):Loan
 
     #Reserv
-    listarReserv: [Reserv]
-    listarReservById(id: Int): Reserv
+    listarReserv: [Reserv!]!
+    listarReservById(id: ID!): Reserv
 
     #User
-    listarUser: [User]
-    listarUserById(id: Int):User
+    listarUser: [User!]!
+    listarUserById(id: ID!):User
 
 }
 
 
 type Mutation{
     #Book
-    createBook(bookPost: BookPost): Book,
-    updateBook(id:Int, bookPut: BookPut):Book
-    deleteBook(id:Int):Int,
+    createBook(bookPost: BookPost!): Book,
+    updateBook(id:ID!, bookPut: BookPut!):Book
+    deleteBook(id:ID!):ID,
 
     #Author
     createAuthor(authorGet:AuthorPost):Author,
-    updateAuthor(id:Int, authorPut: AuthorPut):Author,
-    deleteAutor(id:Int):Int,
+    updateAuthor(id:ID!, authorPut: AuthorPut!):Author,
+    deleteAuthor(id:ID!):ID,
 
     #Loan
-    createLoan(loanPost: LoanPost): Loan,
-    updateLoan(id: Int , loanPut: LoanPut): Loan,
-    deleteLoan(id: Int): Int,
+    createLoan(loanPost: LoanPost!): Loan,
+    updateLoan(id: ID! , loanPut: LoanPut!): Loan,
+    deleteLoan(id: ID!): ID,
 
     #Reserv
-    createReserv(reservPost: ReservPost): Reserv,
-    updateReserv(reservPut: ReservPut):Reserv,
-    deleteReserv(id: Int): Int,
+    createReserv(reservPost: ReservPost!): Reserv,
+    updateReserv(reservPut: ReservPut!):Reserv,
+    deleteReserv(id: ID!): ID,
 
     #User
-    createUser(userPost: UserPost): User,
-    updateUser(userPut: UserPut): User,
-    deleteUser(id: Int):Int
+    createUser(id: ID!,userPost: UserPost!): User,
+    updateUser(userPut: UserPut!): User,
+    deleteUser(id: ID!):ID
 }
 
 
 
 #Author --------------------------
 type Author{
-    id: Int,
-    name: String,
-    lastName: String
+    id: Int!
+    name: String!
+    lastName: String!
 }
 
 input AuthorPut{
-    name: String,
-    lastName: String
+    name: String!
+    lastName: String!
 }
 
 input AuthorPost{
-    name: String,
-    lastName: String
+    name: String!
+    lastName: String!
 }
 
 
 #Book --------------------------
 type  Book{
-    id: Int,
-    title: String,
-    yearPublic: Int,
-    editorial:String
-    code: String,
-    estado:Boolean
-    numePage: Int,
-    author:Author
+    id: Int!
+    title: String!
+    yearPublic: Int!
+    editorial:String!
+    code: String!
+    estado:Boolean!
+    numePage: Int!
+    author:Author!
 }
 
 input  BookPut{
-    title: String,
-    yearPublic: Int,
-    editorial:String
-    code: String,
+    title: String!
+    yearPublic: Int!
+    editorial:String!
+    code: String!
     estado:Boolean
-    numePage: Int
+    numePage: Int!
 }
 
 input  BookPost{
-    title: String,
-    yearPublic: Int,
+    title: String!
+    yearPublic: Int!
     editorial:String
-    code: String,
-    estado:Boolean,
-    numePage: Int,
-    id_autor:Int
+    code: String!
+    estado:Boolean!
+    numePage: Int!
+    id_autor:Int!
 }
 
 
 
 #Loan --------------------------
 type Loan{
-    datePrestamo: String,
-    dateDevol: String,
-    dateDevolucionReal: String,
-    book: Book,
-    user: User
+    datePrestamo: String!
+    dateDevol: String!
+    dateDevolucionReal: String!
+    book: Book!
+    user: User!
 }
 
 input LoanPost{
-    datePrestamo: String,
-    dateDevol: String,
-    dateDevolucionReal: String,
-    id_book: Int,
-    id_user: Int
+    datePrestamo: String!
+    dateDevol: String!
+    dateDevolucionReal: String!
+    id_book: Int!
+    id_user: Int!
 }
 
 input LoanPut{
-    dateDevol: String,
-    dateDevolucionReal: String,
-    id_book: Int
+    dateDevol: String!
+    dateDevolucionReal: String!
+    id_book: Int!
 }
 
 
 #Reserv --------------------------
 type Reserv{
-    status: String,
-    dateReserv: String,
-    book: Book,
-    user: User
+    status: String!
+    dateReserv: String!
+    book: Book!
+    user: User!
 }
 
 input ReservPost{
-    status: String,
-    dateReserv: String,
-    id_book: Int,
-    id_user: Int
+    status: String!
+    dateReserv: String!
+    id_book: Int!
+    id_user: Int!
 }
 
 input ReservPut{
-    status: String,
-    id_book: Int
+    status: String!
+    id_book: Int!
 }
 
 
@@ -151,22 +151,22 @@ input ReservPut{
 
 #User --------------------------
 type User{
-    name: String,
-    lastName: String,
-    email: String,
-    dateRegistrer: String
+    name: String!
+    lastName: String!
+    email: String!
+    dateRegistrer: String!
 }
 
 input UserPost{
-    name: String,
-    lastName: String,
-    email: String,
+    name: String!
+    lastName: String!
+    email: String!
 }
 
 input UserPut{
-    name: String,
-    lastName: String,
-    email: String,
+    name: String!
+    lastName: String!
+    email: String!
 }
 
 

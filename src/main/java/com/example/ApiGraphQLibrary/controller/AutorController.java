@@ -39,7 +39,7 @@ public class AutorController {
     }
 
     @MutationMapping
-    public void deleteAutor(@Argument int id){
+    public void deleteAuthor(@Argument int id){
         authorService.deleteById(id);
     }
 
