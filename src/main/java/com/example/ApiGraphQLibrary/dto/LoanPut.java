@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public record LoanPut(
         LocalDate dateDevol,
-        LocalDate dateDevolucionReal,
-        int id_book
+        LocalDate dateDevolucionReal
 ) {
 }
