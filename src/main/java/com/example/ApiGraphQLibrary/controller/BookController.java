@@ -37,19 +37,9 @@ public class BookController {
         return bookService.findById(id);
     }
 
-
     @MutationMapping
     public Book createBook(@Argument BookPost bookPost) {
-        Author author = authorService.findById(bookPost.id_autor());
-        Book bookNew = new  Book();
-        bookNew.setTitle(bookPost.title());
-        bookNew.setYearPublic(bookPost.yearPublic());
-        bookNew.setEditorial(bookPost.editorial());
-        bookNew.setCode(bookPost.code());
-        bookNew.setEstado(bookPost.estado());
-        bookNew.setNumePage(bookPost.numePage());
-        bookNew.setAuthor(author);
-        return bookService.save(bookNew);
+        return bookService.save(bookPost);
     }
 
     @MutationMapping
@@ -59,15 +49,6 @@ public class BookController {
 
     @MutationMapping
     public Book updateBook(@Argument int id, @Argument BookPut bookPut) {
-
-        Book bookUp = new  Book();
-        bookUp.setTitle(bookPut.title());
-        bookUp.setYearPublic(bookPut.yearPublic());
-        bookUp.setEditorial(bookPut.editorial());
-        bookUp.setCode(bookPut.code());
-        bookUp.setEstado(bookPut.estado());
-        bookUp.setNumePage(bookPut.numePage());
-
-        return bookService.updateById(id, bookUp);
+        return bookService.updateById(id, bookPut);
     }
 }
