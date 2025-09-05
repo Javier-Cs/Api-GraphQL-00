@@ -3,12 +3,12 @@ package com.example.ApiGraphQLibrary.dto;
 public record BookPost(
 
         String title,
-        int yearPublic,
+        Integer yearPublic,
         String editorial,
         String code,
-        boolean estado,
-        int numePage,
-        int id_autor
+        Boolean estado,
+        Integer numePage,
+        Integer id_autor
 
 ) {
 }

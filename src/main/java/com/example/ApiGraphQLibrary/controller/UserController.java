@@ -36,22 +36,12 @@ public class UserController {
 
     @MutationMapping
     public User createUser(@Argument UserPost userPost){
-        User userNew = new User();
-        userNew.setName(userPost.name());
-        userNew.setLastName(userPost.lastName());
-        userNew.setEmail(userPost.email());
-
-        return userServiceImp.save(userNew);
+        return userServiceImp.save(userPost);
     }
 
     @MutationMapping
     public User updateUser(@Argument int id, @Argument UserPut userPut){
-        User userUpdate = new User();
-        userUpdate.setName(userPut.name());
-        userUpdate.setLastName(userPut.lastName());
-        userUpdate.setEmail(userPut.email());
-
-        return  userServiceImp.updateById(id,userUpdate);
+        return  userServiceImp.updateById(id,userPut);
     }
 
     @MutationMapping

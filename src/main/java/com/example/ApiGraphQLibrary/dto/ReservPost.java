@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public record ReservPost(
         String status,
-        LocalDate dateReserv,
-        int id_book,
-        int id_user
+        String dateReserv,
+        Integer id_book,
+        Integer id_user
 ) {
 }

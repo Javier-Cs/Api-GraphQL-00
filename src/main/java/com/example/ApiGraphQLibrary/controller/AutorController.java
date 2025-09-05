@@ -31,11 +31,8 @@ public class AutorController {
     }
 
     @MutationMapping
-    public Author createAuthor(@Argument AuthorPost authorGet) {
-        Author authorNew = new  Author();
-        authorNew.setName(authorGet.name());
-        authorNew.setLastName(authorGet.lastName());
-        return authorService.save(authorNew);
+    public Author createAuthor(@Argument AuthorPost authorPost) {
+        return authorService.save(authorPost);
     }
 
     @MutationMapping
@@ -45,11 +42,7 @@ public class AutorController {
 
     @MutationMapping
     public Author updateAuthor(@Argument int id, @Argument AuthorPut authorPut) {
-        Author authorUp = new  Author();
-        authorUp.setName(authorPut.name());
-        authorUp.setLastName(authorPut.lastName());
-        return authorService.updateById(id, authorUp);
-
+        return authorService.updateById(id, authorPut);
     }
 
 }

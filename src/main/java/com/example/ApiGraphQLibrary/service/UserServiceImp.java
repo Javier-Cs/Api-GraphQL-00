@@ -1,5 +1,7 @@
 package com.example.ApiGraphQLibrary.service;
 
+import com.example.ApiGraphQLibrary.dto.UserPost;
+import com.example.ApiGraphQLibrary.dto.UserPut;
 import com.example.ApiGraphQLibrary.entity.User;
 import com.example.ApiGraphQLibrary.repository.UserRepo;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -29,7 +31,7 @@ public class UserServiceImp implements CrudService<User, Integer> {
 
     @Override
     public User save(User user) {
-        return userRepo.save(user);
+        throw new UnsupportedOperationException("Fuera de Uso");
     }
 
     @Override
@@ -39,12 +41,32 @@ public class UserServiceImp implements CrudService<User, Integer> {
 
     @Override
     public User updateById(Integer id, User userDetails) {
-        User userUp = userRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-        userUp.setName(userDetails.getName());
-        userUp.setLastName(userDetails.getLastName());
-        userUp.setEmail(userDetails.getEmail());
+        throw new UnsupportedOperationException("Fuera de Uso");
+    }
 
-        return userRepo.save(userUp);
+    public User save(UserPost userPost) {
+        User userNew = new User();
+        userNew.setName(userPost.name());
+        userNew.setLastName(userPost.lastName());
+        userNew.setEmail(userPost.email());
+
+        return userRepo.save(userNew);
+    }
+
+
+    public User updateById(Integer id, UserPut userPut) {
+        User userUpdate = userRepo.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("User with id " + id + " not found")
+        );
+        if (userPut.name() != null) {
+            userUpdate.setName(userPut.name());
+        }
+        if (userPut.lastName() != null) {
+            userUpdate.setLastName(userPut.lastName());
+        }
+        if (userPut.email() != null) {
+            userUpdate.setEmail(userPut.email());
+        }
+        return userRepo.save(userUpdate);
     }
 }

@@ -43,26 +43,12 @@ public class LoanController {
 
     @MutationMapping
     public Loan createLoan(@Argument LoanPost loanPost){
-        Book book = bookService.findById(loanPost.id_book());
-        User user =  userServiceImp.findById(loanPost.id_user());
-        Loan reservNew = new Loan();
-
-        reservNew.setDatePrestamo(loanPost.datePrestamo());
-        reservNew.setDateDevol(loanPost.dateDevol());
-        reservNew.setDateDevolucionReal(loanPost.dateDevolucionReal());
-        reservNew.setBook(book);
-        reservNew.setUser(user);
-
-        return loanService.save(reservNew);
+        return loanService.save(loanPost);
     }
 
     @MutationMapping
     public Loan updateLoan(@Argument int id, @Argument LoanPut loanPut){
-        Loan loanUpdate = new Loan();
-        loanUpdate.setDateDevol(loanPut.dateDevol());
-        loanUpdate.setDateDevolucionReal(loanPut.dateDevolucionReal());
-
-        return  loanService.updateById(id,loanUpdate);
+        return  loanService.updateById(id,loanPut);
     }
 
     @MutationMapping
