@@ -41,24 +41,11 @@ public class ReservController {
 
     @MutationMapping
     public Reserv createReserv(@Argument ReservPost reservPost){
-//        Book book = bookService.findById(reservPost.id_book());
-//        User user = userService.findById(reservPost.id_user());
-//        Reserv reservNew = new Reserv();
-//
-//        reservNew.setStatus(reservPost.status());
-//        reservNew.setDateReserv(reservPost.dateReserv());
-//        reservNew.setBook(book);
-//        reservNew.setUser(user);
         return reservService.save(reservPost);
     }
 
     @MutationMapping
     public Reserv updateReserv(@Argument int id, @Argument ReservPut reservPut){
-//        Book book = bookService.findById(reservPut.id_book());
-//        Reserv reservUpdate = new Reserv();
-//        reservUpdate.setStatus(reservPut.status());
-//        reservUpdate.setBook(book);
-
         return  reservService.updateById(id,reservPut);
     }
 

@@ -3,6 +3,7 @@ package com.example.ApiGraphQLibrary.service;
 import com.example.ApiGraphQLibrary.dto.UserPost;
 import com.example.ApiGraphQLibrary.dto.UserPut;
 import com.example.ApiGraphQLibrary.entity.User;
+import com.example.ApiGraphQLibrary.info.tools.Tools;
 import com.example.ApiGraphQLibrary.repository.UserRepo;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,7 @@ public class UserServiceImp implements CrudService<User, Integer> {
         userNew.setName(userPost.name());
         userNew.setLastName(userPost.lastName());
         userNew.setEmail(userPost.email());
+        userNew.setDateRegistrer(Tools.converStr_Date(userPost.dateRegistrer()));
 
         return userRepo.save(userNew);
     }

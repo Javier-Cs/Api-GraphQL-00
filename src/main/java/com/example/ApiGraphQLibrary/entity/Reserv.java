@@ -22,7 +22,6 @@ public class Reserv {
     @NotBlank(message = Mss.notN_E)
     private String status;
 
-    @NotEmpty
     @Column(name = "date_res")
     private LocalDate dateReserv;
 

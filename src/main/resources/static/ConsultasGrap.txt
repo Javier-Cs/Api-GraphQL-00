@@ -106,3 +106,157 @@ mutation {
 mutation {
   deleteAutor(id: 2)
 }
+
+
+
+--- Loan ---
+
+-- Leer Lista de
+{
+  ListarLoan {
+    datePrestamo
+    dateDevol
+    dateDevolucionReal
+  }
+}
+
+-- obtener por Id
+{
+  listarLoanById(id: 2) {
+    datePrestamo
+    dateDevol
+  }
+}
+
+
+-- crear
+mutation MyMutation {
+  createLoan(
+    loanPost: {datePrestamo: "2025-01-01", dateDevol: "2025-02-23", dateDevolucionReal: "2025-06-02", id_book: 5, id_user: 1}
+  ) {
+    dateDevol
+    dateDevolucionReal
+    datePrestamo
+    book {
+      id
+    }
+  }
+}
+
+-- actualizar
+mutation MyMutation {
+  updateLoan(
+    id: "1"
+    loanPut: {dateDevol: "2025-06-12", dateDevolucionReal: "2025-07-09"}
+  ) {
+    dateDevol
+    dateDevolucionReal
+  }
+}
+
+-- eliminar
+mutation MyMutation {
+  deleteLoan(id: "1")
+}
+
+
+
+
+--- User ---
+
+-- Leer Lista de
+{
+  listarUser {
+    name
+    lastName
+    email
+  }
+}
+
+
+-- obtener por Id
+{
+  listarUserById(id: 1){
+    name,
+    lastName,
+    dateRegistrer
+  }
+}
+
+
+-- crear
+mutation {
+  createUser(
+    userPost: {name: "Juana", lastName: "Luz", email: "juana@gmail.com", dateRegistrer: "2025-08-27"}
+  ) {
+    name
+    lastName
+    email
+    dateRegistrer
+  }
+}
+
+-- actualizar
+mutation MyMutation {
+  updateUser(
+    id: "1"
+    userPut: {name: "Juan", lastName: "Paz", email: "juana@Gmail.com"}
+  ) {
+    email
+    lastName
+    name
+  }
+}
+
+-- eliminar
+mutation MyMutation {
+  deleteUser(id: "1")
+}
+
+
+
+
+
+--- Reserv ---
+
+-- Leer Lista de
+{
+  listarReserv{
+    dateReserv
+    status
+  }
+}
+
+
+-- obtener por Id
+{
+  listarReservById(id: 2) {
+    dateReserv
+    status
+  }
+}
+
+-- crear
+mutation MyMutation {
+  createReserv(
+    reservPost: {status: "Pendiente", dateReserv: "2025-06-21", id_book: 4, id_user: 1}
+  ) {
+    status
+    dateReserv
+    user {
+      id
+    }
+  }
+}
+
+-- actualizar
+mutation MyMutation {
+  updateReserv(id: "1", reservPut: {status: "activo"}) {
+    status
+  }
+}
+
+-- eliminar
+mutation MyMutation {
+  deleteReserv(id: "1")
+}

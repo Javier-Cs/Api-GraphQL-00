@@ -149,6 +149,7 @@ input ReservPut{
 
 #User --------------------------
 type User{
+    id: ID
     name: String!
     lastName: String!
     email: String!
@@ -159,6 +160,7 @@ input UserPost{
     name: String!
     lastName: String!
     email: String!
+    dateRegistrer: String!
 }
 
 input UserPut{

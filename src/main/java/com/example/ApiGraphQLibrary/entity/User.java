@@ -38,7 +38,6 @@ public class User {
     private String email;
 
     @Column(name = "date_Regis")
-    @NotEmpty
     private LocalDate dateRegistrer;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
