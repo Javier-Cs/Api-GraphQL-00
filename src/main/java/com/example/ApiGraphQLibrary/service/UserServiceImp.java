@@ -26,7 +26,7 @@ public class UserServiceImp implements CrudService<User, Integer> {
     @Override
     public User findById(Integer id) {
         return userRepo.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("User with id " + id + " not found")
+                () -> new ResourceNotFoundException("")
         );
     }
 
